@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>帐号注册</title>
+        <style>
+			#box{
+				width:600px;
+				margin:50px auto;
+				display:flex;
+				flex-direction:column;
+			}
+			.item{
+				display:flex;
+				flex-direction:row;
+				margin-bottom:20px;
+				justify-content:flex-end;
+			}
+			.item label{
+				flex:2;
+				height:35px;
+				line-height:35px;
+			}
+			.item input{
+				padding-left:5px;
+				height:35px;
+				border-radius:4px;
+				border:1px solid gray;
+				flex:5;
+			}
+			.item span{
+				flex:2;
+				line-height:35px;
+			}
+			#btn{
+				height:35px;
+				background-color:rgba(10,20,200,0.5);
+				border:0px solid black;
+				border-radius:3px;
+			}
+			#info1{
+				color:red;
+			}
+        </style>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+        <script>
+        	$(function(){
+        		var flag = 0;
+        		//文本框的验证；确认密码的验证；以及点击注册之后的操作
+        		$("#uname").blur(function(){
+        			//用户名只能为数字且长度不少于4；不大于10;
+        			/*alert($(this).val());*/
+        			if(!/^\d*$/.test($(this).val()) || $(this).val().length < 4 || $(this).val().length > 10)
+        			{
+        				$("#info1").text('帐号不符合要求').css('color','rgba(200,10,10,0.8)');
+        				flag = 1;
+        				
+        			}
+        			else
+        			{
+        				$('#info1').text('帐号合法').css('color','rgba(10,200,10,0.8)');
+        				flag = 0;
+        			}
+        			/*alert($(this).val().length);*/
+        		});
+        		$("#pass").blur(function(){
+        			if($(this).val().length < 6 || $(this).val().length > 12)
+        			{
+        				$("#info2").text("密码长度在6-10之间").css('color','rgba(200,10,10,0.8)');
+        				flag = 1;
+        			}
+        			else
+        			{
+        				$("#info2").text("密码长度符合要求").css('color','rgba(10,200,10,0.8)');
+        				flag = 0;
+        			}
+        		});
+        		$("#pass1").blur(function(){
+        			if($(this).val() != "" &&  $(this).val() == $("#pass").val())
+        			{
+        				$("#info3").text("密码确认一致").css('color','rgba(10,200,10,0.8)');
+        				flag = 0;
+        			}
+        			else
+        			{
+        				$("#info3").text("请重新确认密码").css('color','rgba(200,10,10,0.8)');
+        				flag = 1;
+        			}
+        		});
+        		$("#btn").click(function(){
+        			//去请求另一个php页面，用于将本次输入的用户名和密码存入数据库的Register表中;
+        			if(flag == 1)  //说明表单有错
+        			{
+        				return false;
+        			}
+        			else
+        			{
+        				/*alert($("#pass").val());*/
+        				$.post('register.php', {usrname: $("#uname").val(), password: $("#pass").val()}, function(data, textStatus){
+        					alert(data);
+        					console.log(data);
+        				})
+        			}
+        		});
+        	})
+        </script>
+    </head>
+    <body>
+    	<div id="box">
+    		<div class="item" id="first">
+    			<label for="usr">昵称:</label>
+    			<input type="text" name = "usr" id="uname" />
+    			<span id="info1"></span>
+    		</div>
+    		<div class="item" id="two">
+    			<label for="pwd">设置密码:</label>
+    			<input type="password" name="pwd" id="pass" />
+    			<span id="info2"></span>
+    		</div>
+    		<div class="item" id="three">
+    			<label for="pwd_again">确认密码:</label>
+    			<input type="password" name="pwd_again" id="pass1" />
+    			<span id="info3"></span>
+    		</div>
+    		<input id="btn" type="button" value="注册" />
+    	</div>
+    </body>
+</html>
