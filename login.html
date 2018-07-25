@@ -57,7 +57,34 @@
 				margin:10px;
 			}
         </style>
-        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+     
+    </head>
+    <body id="g">
+    	<div id="Box">
+            <div id="title">
+                聊天室V1.0
+            </div>
+            <div id="QQPanel">
+                <div id="name">
+                    <input class="first" id="num" type="text" value="帐号/手机/邮箱" />
+                    <a href="register.html">注册帐号</a>
+                </div>
+                <div id="pass">
+                    <input class="first" id="password" type="text" value="密码" />
+                    <a href="#">找回密码</a>
+                </div>
+                <div id="option">
+                    <input type="checkbox" name="pass" />
+                    <label for="pass">记住密码</label>
+                    <input type="checkbox" name="log" />
+                    <label for="log">自动登录</label>
+                </div>
+                <div>
+                    <input id="Login" type="button" value="登录" />`
+                </div>
+            </div>
+        </div>
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
         <script>
         	$(function(){
         		$(".first").focus(function(){
@@ -141,31 +168,5 @@
         		});
         	})
         </script>
-    </head>
-    <body id="g">
-    	<div id="Box">
-            <div id="title">
-                聊天室V1.0
-            </div>
-            <div id="QQPanel">
-                <div id="name">
-                    <input class="first" id="num" type="text" value="帐号/手机/邮箱" />
-                    <a href="register.html">注册帐号</a>
-                </div>
-                <div id="pass">
-                    <input class="first" id="password" type="text" value="密码" />
-                    <a href="#">找回密码</a>
-                </div>
-                <div id="option">
-                    <input type="checkbox" name="pass" />
-                    <label for="pass">记住密码</label>
-                    <input type="checkbox" name="log" />
-                    <label for="log">自动登录</label>
-                </div>
-                <div>
-                    <input id="Login" type="button" value="登录" />`
-                </div>
-            </div>
-        </div>
     </body>
 </html>
